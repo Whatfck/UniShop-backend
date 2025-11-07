@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=unishop_db
+      - DB_USERNAME=unishop_user
+      - DB_PASSWORD=unishop_password
+    depends_on:
+      - db
