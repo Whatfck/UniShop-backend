@@ -9,5 +9,3 @@ services:
       - DB_NAME=unishop_db
       - DB_USERNAME=unishop_user
       - DB_PASSWORD=unishop_password
-    depends_on:
-      - db
