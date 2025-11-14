@@ -26,6 +26,9 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "profile_image")
+    private String profileImage;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -90,6 +93,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public LocalDateTime getCreatedAt() {
