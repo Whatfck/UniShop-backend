@@ -30,6 +30,9 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private FavoriteService favoriteService;
+
     public List<ProductDTO> getAllActiveProducts() {
         List<Product> products = productRepository.findByStatus("ACTIVE");
         return products.stream().map(this::convertToDTO).collect(Collectors.toList());
@@ -95,7 +98,24 @@ public class ProductService {
             .collect(Collectors.toList());
         dto.setImages(imageDTOs);
 
+        // Note: isFavorited will be set by the controller after checking with FavoriteService
+        // to avoid circular dependency
+
         return dto;
+    }
+
+    // Set isFavorited field for a list of products
+    public void setIsFavoritedForProducts(List<ProductDTO> products, Integer userId) {
+        for (ProductDTO product : products) {
+            boolean isFavorited = favoriteService.isProductFavorited(userId, product.getId());
+            product.setIsFavorited(isFavorited);
+        }
+    }
+
+    // Set isFavorited field for a single product
+    public void setIsFavoritedForProduct(ProductDTO product, Integer userId) {
+        boolean isFavorited = favoriteService.isProductFavorited(userId, product.getId());
+        product.setIsFavorited(isFavorited);
     }
 
     private ProductImageDTO convertImageToDTO(ProductImage image) {

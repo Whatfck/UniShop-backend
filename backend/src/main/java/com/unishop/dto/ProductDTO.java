@@ -15,6 +15,7 @@ public class ProductDTO {
     private Long categoryId;
     private String categoryName;
     private List<ProductImageDTO> images;
+    private Boolean isFavorited;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -100,6 +101,14 @@ public class ProductDTO {
 
     public void setImages(List<ProductImageDTO> images) {
         this.images = images;
+    }
+
+    public Boolean getIsFavorited() {
+        return isFavorited;
+    }
+
+    public void setIsFavorited(Boolean isFavorited) {
+        this.isFavorited = isFavorited;
     }
 
     public LocalDateTime getCreatedAt() {

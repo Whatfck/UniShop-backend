@@ -51,4 +51,9 @@ public class AuthService {
 
         return new AuthResponse(token, user.getId(), user.getEmail(), user.getName(), user.getRole());
     }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
 }
