@@ -18,6 +18,8 @@ public class CreateProductRequest {
     @NotNull(message = "La categoría es obligatoria")
     private Long categoryId;
 
+    private String condition;
+
     @Size(max = 10, message = "Máximo 10 imágenes permitidas")
     private List<String> imageUrls;
 
@@ -55,6 +57,14 @@ public class CreateProductRequest {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
     public List<String> getImageUrls() {

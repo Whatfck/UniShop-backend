@@ -18,8 +18,21 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        List<ProductDTO> products = productService.getAllActiveProducts();
+    public ResponseEntity<List<ProductDTO>> getAllProducts(
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) Long categoryId,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) String condition,
+            @RequestParam(required = false) String datePosted) {
+        List<ProductDTO> products = productService.getFilteredProducts(
+            search != null ? search.trim() : null,
+            categoryId,
+            minPrice,
+            maxPrice,
+            condition,
+            datePosted
+        );
         // TODO: isFavorited will be checked by frontend via separate API call
         return ResponseEntity.ok(products);
     }

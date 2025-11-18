@@ -29,6 +29,9 @@ public class Product {
     @Column(name = "category_id")
     private Long categoryId;
 
+    @Column
+    private String condition;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -103,6 +106,14 @@ public class Product {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
     public LocalDateTime getCreatedAt() {

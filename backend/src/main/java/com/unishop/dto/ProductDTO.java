@@ -14,6 +14,7 @@ public class ProductDTO {
     private String userName;
     private Long categoryId;
     private String categoryName;
+    private String condition;
     private List<ProductImageDTO> images;
     private Boolean isFavorited;
     private LocalDateTime createdAt;
@@ -93,6 +94,14 @@ public class ProductDTO {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
     public List<ProductImageDTO> getImages() {
