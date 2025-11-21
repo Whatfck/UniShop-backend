@@ -23,6 +23,9 @@ public class CreateProductRequest {
     @Size(max = 10, message = "Máximo 10 imágenes permitidas")
     private List<String> imageUrls;
 
+    // Order of images (optional, for maintaining specific order)
+    private List<Integer> imageOrder;
+
     // Constructors
     public CreateProductRequest() {}
 
@@ -73,5 +76,13 @@ public class CreateProductRequest {
 
     public void setImageUrls(List<String> imageUrls) {
         this.imageUrls = imageUrls;
+    }
+
+    public List<Integer> getImageOrder() {
+        return imageOrder;
+    }
+
+    public void setImageOrder(List<Integer> imageOrder) {
+        this.imageOrder = imageOrder;
     }
 }

@@ -1,4 +1,4 @@
-# Use Maven with OpenJDK 21 as base image
+# Development Dockerfile with hot reload
 FROM maven:3.9.5-eclipse-temurin-21
 
 # Set working directory
@@ -11,14 +11,11 @@ RUN mvn dependency:go-offline -B
 # Copy source code
 COPY src ./src
 
-# Build the application
-RUN mvn clean package -DskipTests
-
 # Create uploads directory
 RUN mkdir -p /app/uploads && chmod 755 /app/uploads
 
 # Expose port
 EXPOSE 8080
 
-# Run the application
-CMD ["java", "-jar", "target/unishop-backend-0.0.1-SNAPSHOT.jar"]
+# Run with hot reload for development
+CMD ["mvn", "spring-boot:run"]

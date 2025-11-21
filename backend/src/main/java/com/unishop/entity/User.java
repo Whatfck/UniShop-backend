@@ -29,6 +29,9 @@ public class User {
     @Column(name = "profile_image")
     private String profileImage;
 
+    @Column(name = "phone_verified")
+    private Boolean phoneVerified = false;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -101,6 +104,14 @@ public class User {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+    public Boolean getPhoneVerified() {
+        return phoneVerified;
+    }
+
+    public void setPhoneVerified(Boolean phoneVerified) {
+        this.phoneVerified = phoneVerified;
     }
 
     public LocalDateTime getCreatedAt() {

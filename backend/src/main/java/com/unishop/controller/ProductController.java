@@ -46,7 +46,7 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody CreateProductRequest request) {
         // TODO: Get userId from JWT token
-        Long userId = 1L; // Temporary
+        Long userId = 1L; // Temporary - using small value to avoid overflow
         ProductDTO product = productService.createProduct(request, userId);
         return ResponseEntity.ok(product);
     }

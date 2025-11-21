@@ -1,6 +1,7 @@
 package com.unishop.controller;
 
 import com.unishop.dto.ProductDTO;
+import com.unishop.dto.ToggleFavoriteResponse;
 import com.unishop.service.FavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,12 +41,13 @@ public class FavoriteController {
     }
 
     @PostMapping("/{productId}/toggle")
-    public ResponseEntity<String> toggleFavorite(@PathVariable Long productId) {
+    public ResponseEntity<ToggleFavoriteResponse> toggleFavorite(@PathVariable Long productId) {
         // TODO: Get userId from JWT token
         Integer userId = 1; // Temporary
         boolean isFavorited = favoriteService.toggleFavorite(userId, productId);
         String message = isFavorited ? "Producto agregado a favoritos" : "Producto removido de favoritos";
-        return ResponseEntity.ok(message);
+        ToggleFavoriteResponse response = new ToggleFavoriteResponse(isFavorited, message);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{productId}/check")

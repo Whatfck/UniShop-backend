@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Service
@@ -127,12 +128,21 @@ public class ProductService {
 
         // Handle images if provided
         if (request.getImageUrls() != null && !request.getImageUrls().isEmpty()) {
+            List<Integer> imageOrder = request.getImageOrder();
+            if (imageOrder == null || imageOrder.size() != request.getImageUrls().size()) {
+                // Use default order if not provided or size doesn't match
+                imageOrder = new java.util.ArrayList<>();
+                for (int i = 0; i < request.getImageUrls().size(); i++) {
+                    imageOrder.add(i);
+                }
+            }
+
             for (int i = 0; i < request.getImageUrls().size(); i++) {
                 ProductImage image = new ProductImage();
                 image.setProductId(product.getId());
                 image.setImageUrl(request.getImageUrls().get(i));
-                image.setIsPrimary(i == 0); // First image is primary
-                image.setOrderIndex(i);
+                image.setIsPrimary(imageOrder.get(i) == 0); // First in order is primary
+                image.setOrderIndex(imageOrder.get(i));
                 productImageRepository.save(image);
             }
         }
