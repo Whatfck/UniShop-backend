@@ -33,7 +33,6 @@ public class ProductController {
             condition,
             datePosted
         );
-        // TODO: isFavorited will be checked by frontend via separate API call
         return ResponseEntity.ok(products);
     }
 

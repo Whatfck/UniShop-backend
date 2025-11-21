@@ -31,8 +31,6 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @Autowired
-    private FavoriteService favoriteService;
 
     public List<ProductDTO> getAllActiveProducts() {
         List<Product> products = productRepository.findByStatus("ACTIVE");
@@ -178,19 +176,6 @@ public class ProductService {
         return dto;
     }
 
-    // Set isFavorited field for a list of products
-    public void setIsFavoritedForProducts(List<ProductDTO> products, Integer userId) {
-        for (ProductDTO product : products) {
-            boolean isFavorited = favoriteService.isProductFavorited(userId, product.getId());
-            product.setIsFavorited(isFavorited);
-        }
-    }
-
-    // Set isFavorited field for a single product
-    public void setIsFavoritedForProduct(ProductDTO product, Integer userId) {
-        boolean isFavorited = favoriteService.isProductFavorited(userId, product.getId());
-        product.setIsFavorited(isFavorited);
-    }
 
     private ProductImageDTO convertImageToDTO(ProductImage image) {
         ProductImageDTO dto = new ProductImageDTO();
