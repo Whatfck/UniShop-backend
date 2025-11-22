@@ -11,12 +11,12 @@ services:
       - "host.docker.internal:host-gateway"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - DB_HOST=host.docker.internal
+      - DB_HOST=172.17.0.1
       - DB_PORT=5432
       - DB_NAME=unishop_db
       - DB_USERNAME=unishop_user
       - DB_PASSWORD=unishop_password
-      - APP_IA_SERVICE_URL=http://host.docker.internal:8000
+      - APP_IA_SERVICE_URL=http://172.17.0.1:8000
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
